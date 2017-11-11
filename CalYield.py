@@ -1,13 +1,13 @@
-import pandas
+import pandas as pd
 import numpy as np
 
-prices = pandas.DataFrame([1035.23, 1032.47, 1011.78, 1010.59, 1016.03, 1007.95, 
+prices = pd.DataFrame([1035.23, 1032.47, 1011.78, 1010.59, 1016.03, 1007.95, 
               1022.75, 1021.52, 1026.11, 1027.04, 1030.58, 1030.42,
               1036.24, 1015.00, 1015.20])
 
 # print(prices)
 
-df1 = pandas.concat( [  prices,  prices.shift(-1) , prices / prices.shift(-1)  ], axis=1);
+df1 = pd.concat( [  prices,  prices.shift(-1) , prices / prices.shift(-1)  ], axis=1);
 
 df1.columns = ['p','p1','p2']
 
@@ -15,7 +15,7 @@ df1.columns = ['p','p1','p2']
 
 df1 =  df1.dropna()
 
-df1["logp"] =  np.log(df1.p2)
+df1["logp"] =  np.log(df1['p2'])
 
 print(df1)
 
