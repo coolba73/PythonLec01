@@ -1,7 +1,5 @@
-import math
-
 import pandas
-import numpy
+import numpy as np
 
 prices = pandas.DataFrame([1035.23, 1032.47, 1011.78, 1010.59, 1016.03, 1007.95, 
               1022.75, 1021.52, 1026.11, 1027.04, 1030.58, 1030.42,
@@ -17,10 +15,11 @@ df1.columns = ['p','p1','p2']
 
 df1 =  df1.dropna()
 
-df1["logp"] =  numpy.log(df1.p2)
-
+df1["logp"] =  np.log(df1.p2)
 
 print(df1)
+
+
 
 
 
