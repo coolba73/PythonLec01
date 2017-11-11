@@ -1,6 +1,7 @@
 import math
 
 import pandas
+import numpy
 
 prices = pandas.DataFrame([1035.23, 1032.47, 1011.78, 1010.59, 1016.03, 1007.95, 
               1022.75, 1021.52, 1026.11, 1027.04, 1030.58, 1030.42,
@@ -10,10 +11,33 @@ prices = pandas.DataFrame([1035.23, 1032.47, 1011.78, 1010.59, 1016.03, 1007.95,
 
 df1 = pandas.concat( [  prices,  prices.shift(-1) , prices / prices.shift(-1)  ], axis=1);
 
+df1.columns = ['p','p1','p2']
+
+# df1['plog'] = math.log(df1.p2)
+
+df1 =  df1.dropna()
+
+df1["logp"] =  numpy.log(df1.p2)
+
+
+print(df1)
+
+
+
+
+# df1 = pandas.concat([prices.shift(-1)] , axis=1)
+# df2 = pandas.concat([ prices / prices.shift(-1)] , axis=1)
+
+
+# df = pandas.DataFrame([{'p1' : prices.values.tolist()}] )
+
+
 
 # df2 = pandas.DataFrame( df1 , columns=['p1','p2','p3']).reset_index()
 
-print(df1)
+# print(df1)
+
+
 
 
 # print( math.log( prices / prices.shift(-1)) )
