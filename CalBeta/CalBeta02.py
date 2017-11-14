@@ -3,9 +3,10 @@ import pandas as pd
 import numpy as np
 from collections import OrderedDict
 
-data = open('Callbeta.dat','r').read()
+data = open("D:\FinInsightServices\PythonLec01\CalBeta\data\Callbeta.dat",'r').read()
 
 source = json.loads(data)
+
 
 df_kospi = pd.DataFrame(source["KOSPI200"])
 
@@ -23,9 +24,4 @@ for k in source.keys():
         item["Beta"] = beta
         re.append(item)
 
-print(re)
-
-
-
-
-    
+print(json.dumps(re))
