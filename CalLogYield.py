@@ -36,7 +36,7 @@ total = OrderedDict();
 for k in source.keys():
 
     # print(k)
-    source2 = json.loads(source[k]);
+    source2 = json.loads(source[k])
     # print(source2.keys())
 
 
@@ -46,6 +46,6 @@ for k in source.keys():
         # print (re)
 
 
-print( json.dumps( total) )  
+print( json.dumps( total ))  
 
 

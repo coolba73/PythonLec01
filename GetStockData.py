@@ -1,6 +1,7 @@
 from pandas_datareader import data
 
 itemCode = "005930"
+itemCode = "KOSPI200"
 
 df = data.DataReader("KRX:" + itemCode,"google" )
 
