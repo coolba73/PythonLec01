@@ -17,7 +17,7 @@ df_kospi = pd.DataFrame(source["KOSPI200"])
 var_kospi = np.var(df_kospi["LogYield"])
 
 re = []
-
+totalre = {}
 for k in source.keys():
     if (k != 'KOSPI200'):
         df = pd.DataFrame(source[k])
@@ -28,4 +28,5 @@ for k in source.keys():
         item["Beta"] = beta
         re.append(item)
 
-print(json.dumps(re))
+totalre["result"] = re
+print( json.dumps( totalre))
