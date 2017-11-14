@@ -31,7 +31,7 @@ def calLogYield(adf):
 
 #===================================================================================
 
-total = OrderedDict();
+total = OrderedDict()
 
 for k in source.keys():
 
