@@ -19,7 +19,7 @@ if (resultColumn == ""):
     resultColumn = "AssetRisk"
 
 df["MarketRisk"] = marketRisk
-df[resultColumn] =  df[targetColumn]**2 + marketRisk**2
+df[resultColumn] =  (df[targetColumn]**2) * (marketRisk**2)
 
 re = {}
 re['result'] = json.loads( df.to_json(orient='records'))
