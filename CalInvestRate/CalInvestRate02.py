@@ -66,12 +66,12 @@ totZi = np.sum(df['Zi'])
 
 df["InvestRate"] = df["Zi"] / totZi
 
+df["InvestRate"] = df["InvestRate"] * 100
+df = df[["ItemCode", "InvestRate"]]
 
 print(df.to_string())
 
 print(np.sum(df["InvestRate"]))
-
-
 re = {}
 re['result'] = json.loads( df.to_json(orient='records'))
 
