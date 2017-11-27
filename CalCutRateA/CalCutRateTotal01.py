@@ -29,39 +29,24 @@ df_risk = pd.DataFrame(source["InputData"][target_source][target_table])
 
 rank_column = source["propCutRateAColumnInfo"]["Rank_TargetColumn"]
 
-df = pd.merge(df_over[["ItemCode", over_column, rank_column]], df_beta[["ItemCode",beta_column]], how='inner' ,left_on=["ItemCode"], right_on=["ItemCode"])
+df = pd.merge(df_over[["ItemCode", over_column, rank_column,]], df_beta[["ItemCode",beta_column]], how='inner' ,left_on=["ItemCode"], right_on=["ItemCode"])
 df = pd.merge(df , df_risk[["ItemCode",risk_column]], how='inner', left_on=["ItemCode"], right_on=["ItemCode"])
 df = df[["ItemCode", rank_column, over_column, beta_column, risk_column]]
 df["key"] = 1
 df = pd.merge(df, df, how='inner', left_on=["key"], right_on=["key"])
 df = df.loc[df[rank_column + "_x"] >= df[rank_column + "_y"]]
 df['Value_A'] = df[over_column + "_y"] * (df[beta_column+"_y"]**2) / df[risk_column + "_y"]
-df = df.groupby(["ItemCode_x", rank_column + "_x"], as_index=False).agg({"Value_A":np.sum})
+df['Value_B'] = (df[beta_column+"_y"]**2) / df[risk_column + "_y"]
+
+
+
+df = df.groupby(["ItemCode_x", rank_column + "_x"], as_index=False).agg({"Value_A":np.sum , "Value_B":np.sum })
+
+
+
 df.rename(columns = lambda x: x.replace('_x','').replace('_y',''), inplace = True)
 df = df.sort_values(rank_column,ascending=True)
 
 re = {}
 re['result'] = json.loads( df.to_json(orient='records'))
-print( json.dumps(re) )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# print( json.dumps(re) )
