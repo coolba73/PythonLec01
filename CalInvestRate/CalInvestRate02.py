@@ -45,12 +45,12 @@ df = df.loc[df[rank_column + "_x"] >= df[rank_column + "_y"]]
 df['Value_A'] = df[over_column + "_y"] * (df[beta_column+"_y"]**2) / df[risk_column + "_y"]
 df['Value_B'] = (df[beta_column+"_y"]**2) / df[risk_column + "_y"]
 
-df = df.groupby(["ItemCode_x", rank_column + "_x"], as_index=False).agg({"Value_A":np.sum , \
-                                                                         "Value_B":np.sum, \
-                                                                         marketrisk_column + "_y" : np.min, \
-                                                                         beta_column + "_x" : np.min, \
-                                                                         risk_column + "_x" : np.min,
-                                                                         over_column + "_x" : np.min
+df = df.groupby(["ItemCode_x", rank_column + "_x"], as_index=False).agg({"Value_A":np.sum , 
+                                                                         "Value_B":np.sum, 
+                                                                         marketrisk_column + "_y" : np.min, 
+                                                                         beta_column + "_x" : np.min, 
+                                                                         risk_column + "_x" : np.min, 
+                                                                         over_column + "_x" : np.min 
                                                                          }
                                                                          )
 
@@ -70,8 +70,8 @@ df["InvestRate"] = df["InvestRate"] * 100
 df = df[["ItemCode", "InvestRate"]]
 
 print(df.to_string())
-
 print(np.sum(df["InvestRate"]))
+
 re = {}
 re['result'] = json.loads( df.to_json(orient='records'))
 
