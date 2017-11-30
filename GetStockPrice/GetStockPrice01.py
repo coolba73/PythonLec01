@@ -6,18 +6,23 @@ from collections import OrderedDict
 import pandas_datareader.data as wb
 
 
-df = data.DataReader("KRX:KOSPI","google" )
+df = data.DataReader("KRX:035420","google" )
 
-# df = wb.DataReader('KRX:KOSPI', 'google')
+# df = wb.DataReader('KRX:035420', 'google')
 
 # df = data.get_data_google("KRX:KOSPI")
 
-# df = data.get_data_yahoo("^KS11")
+# df = data.get_data_yahoo(["^KS200","035420.KS"],"2017-01-01")
 # df = data.get_data_yahoo("035420.KS","2017-01-01")
 
 # print(len(df))
 
-print(df)
+# print (df)
+
+# for k in df.minor_axis:
+#     print(k)
+#     print(df.minor_xs(k))
+    
 
 
 # revdata = open(os.environ['req']).read()
