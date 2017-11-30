@@ -25,5 +25,9 @@ df.rename(columns = lambda x: x.replace('_x','').replace('_y',''), inplace = Tru
 rho = 0.5
 df["cutrate"] = rho / (1-rho+(df["Rank"]*rho)) * df["ER"]
 
-print(df)
+re = {}
+re['result'] = json.loads( df.to_json(orient='records'))
+
+print( json.dumps(re))
+
 

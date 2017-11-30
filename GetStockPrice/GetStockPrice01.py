@@ -6,7 +6,7 @@ from collections import OrderedDict
 import pandas_datareader.data as wb
 
 
-df = data.DataReader("KRX:KOSPI","google",'2017-01-01' )
+df = data.DataReader("KRX:KOSPI","google" )
 
 # df = wb.DataReader('KRX:KOSPI', 'google')
 
