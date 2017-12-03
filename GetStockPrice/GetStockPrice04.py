@@ -24,6 +24,7 @@ def build_url(symbol, start, end):
 
 start = datetime.datetime(2010, 1, 1)
 end = datetime.datetime.today()
+
 # sym = 'SPY'
 sym = 'KRX:035420'
 url = build_url(sym, start, end)
