@@ -40,16 +40,8 @@ for k in source:
     data = requests.get(url).text
     data = pd.read_csv(StringIO(data), index_col='Date', parse_dates=True)
     data = data.reset_index()
-
-    # print(data["Date"].apply(lambda x: x.strftime('%Y-%m-%d')))
-
-    # data["Date"].apply(  lambda x: x.strftime('%Y-%m-%d'))
     data["Date"] = data["Date"].dt.strftime('%Y-%m-%d')
-
     data = data.rename(columns={"Date":"Index"})
-
-    # print(data)
-
     itemprice = {}
     itemprice[k] = data.to_json(orient='records')
     re.append(itemprice)
