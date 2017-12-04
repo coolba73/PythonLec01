@@ -22,8 +22,17 @@ def build_url(symbol, start, end):
     return BASE + '?' + urlencode(params)
 
 
-start = datetime.datetime(2010, 1, 1)
-end = datetime.datetime.today()
+# today = '{0:%Y-%m-%d}'.format(datetime.datetime.now())
+
+# start = '{0:%Y-%m-%d}'.format(datetime.datetime( int(today.split('-')[0]) - 1 ,int(today.split('-')[1]) ,int(today.split('-')[2]) ))
+# end = today
+
+today = '{0:%Y-%m-%d}'.format(datetime.datetime.now())
+start = datetime.datetime( int(today.split('-')[0]) - 1 ,int(today.split('-')[1]) ,int(today.split('-')[2]) )
+end = datetime.datetime.now()
+
+# start = datetime.datetime(2010, 1, 1)
+# end = datetime.datetime.today()
 
 # sym = 'SPY'
 sym = 'KRX:035420'

@@ -5,8 +5,14 @@ from pandas_datareader import data
 from collections import OrderedDict
 import pandas_datareader.data as wb
 
+import datetime
 
-df = data.DataReader("KRX:035420","google" )
+
+
+
+
+# df = data.DataReader("KRX:035420","google" )
+
 
 # df = wb.DataReader('KRX:035420', 'google')
 
