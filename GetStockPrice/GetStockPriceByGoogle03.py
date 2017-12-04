@@ -31,8 +31,7 @@ today = '{0:%Y-%m-%d}'.format(datetime.datetime.now())
 start = datetime.datetime( int(today.split('-')[0]) - 1 ,int(today.split('-')[1]) ,int(today.split('-')[2]) )
 end = datetime.datetime.now()
 
-re = []
-itemprice = {}
+re = {}
 
 for k in source:
     sym = "KRX:" + k
@@ -42,16 +41,9 @@ for k in source:
     data = data.reset_index()
     data["Date"] = data["Date"].dt.strftime('%Y-%m-%d')
     data = data.rename(columns={"Date":"Index"})
-    itemprice = {}
-    itemprice[k] = json.loads( data.to_json(orient='records'))
-    re.append(itemprice)
+    re[k] = json.loads( data.to_json(orient='records'))
     
-
 print(json.dumps(re))
-
-
-
-
 
 
 
