@@ -31,18 +31,19 @@ today = '{0:%Y-%m-%d}'.format(datetime.datetime.now())
 start = datetime.datetime( int(today.split('-')[0]) - 1 ,int(today.split('-')[1]) ,int(today.split('-')[2]) )
 end = datetime.datetime.now()
 
-
-
-sym = 'KRX:035420'
-url = build_url(sym, start, end)
 re = []
 itemprice = {}
 
-data = requests.get(url).text
-data = pd.read_csv(StringIO(data), index_col='Date', parse_dates=True)
-itemprice["1111"] = data.to_json()
+for k in source:
+    sym = "KRX:" + k
+    url = build_url(sym, start, end)
+    data = requests.get(url).text
+    data = pd.read_csv(StringIO(data), index_col='Date', parse_dates=True)
+    itemprice[k] = data.to_json(orient='records')
+    re.append(itemprice)
+    
 
-print(itemprice)
+print(json.dumps(re))
 
 
 
@@ -50,4 +51,3 @@ print(itemprice)
 
 
 
-print(source)
