@@ -8,13 +8,14 @@ import pandas_datareader.data as wb
 import datetime
 
 
-
-
-
 # df = data.DataReader("KRX:035420","google" )
+
+# print(df)
 
 
 # df = wb.DataReader('KRX:035420', 'google')
+
+# print(df)
 
 # df = data.get_data_google("KRX:KOSPI")
 
