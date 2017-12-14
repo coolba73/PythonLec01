@@ -13,6 +13,9 @@ import json
 #_________________________________________________________________________________________________________________________________________________________________________
 BASE = 'http://finance.google.com/finance/historical'
 
+source = json.loads(open('D:\FinInsightServices\PythonLec01\CalCorpBeta\data.dat','r').read())
+
+
 def get_params(symbol, start, end):
     params = {
         'q': symbol,
@@ -42,15 +45,22 @@ def GetStockPrice(itemCode):
 ###############################################################################################################################################################################
 #%%
 df_kospi = GetStockPrice("KOSPI200")
-df_item = GetStockPrice("005490");
+
 
 ###############################################################################################################################################################################
 #%%
 
-df_kospi_yield = df_kospi.pct_change(-1)[["Close"]]
-df_item_yield = df_item.pct_change(-1)[["Close"]]
+re = {}
 
-beta = df_item_yield.Close.cov(df_kospi_yield.Close) / (df_item_yield.var().Close)
+for k in source:
+    df_item = GetStockPrice(k);
+    df_kospi_yield = df_kospi.pct_change(-1)[["Close"]]
+    df_item_yield = df_item.pct_change(-1)[["Close"]]
+    beta = df_item_yield.Close.cov(df_kospi_yield.Close) / (df_item_yield.var().Close)
+    re[k] = beta
+
+print( json.dumps(re))
+
 
 
 
